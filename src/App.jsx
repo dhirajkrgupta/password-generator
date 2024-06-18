@@ -48,17 +48,18 @@ function App() {
   return (
     <>
       <div className='outerbox'>
+        <p>PASSWORD GENERATOR</p>
         <div className='outputbox'>
           <input type="text" value={password} id='password'/>
           <button className='copyBtn' onClick={copyToClipboard}>Copy</button>
         </div>
         <div className='inputbox'>
-          <label for="points">Length({passwordLength})</label>
-          <input type="range" name="passwordlength" id="passwordlength" min="0" max="20" step="1" value={passwordLength} onChange={(e)=>{setPasswordLenght(e.target.value)}}/>
-          <label for="number"> Number</label>
-          <input type="checkbox" name="number" id="number" defaultChecked onChange={(e) => { setIsNumber(e.target.checked); char.checked =(e.target.checked===false)?true:isChar; setisChar(char.checked)}} />
-          <label for="char"> Characters</label>
-          <input type="checkbox" name="char" id="char" defaultChecked onChange={(e) => { setisChar(e.target.checked);number.checked =(e.target.checked===false)?true:isNumber;setIsNumber(number.checked)}} />
+          <label for="points" className='label'>Length({passwordLength})</label>
+          <input type="range" className='rangeslid' name="passwordlength" id="passwordlength" min="0" max="30" step="1" value={passwordLength} onChange={(e)=>{setPasswordLenght(e.target.value)}}/>
+          <label for="number" className='label'> Number</label>
+          <input type="checkbox" className='checkmark' name="number" id="number" defaultChecked onChange={(e) => { setIsNumber(e.target.checked); char.checked =(e.target.checked===false)?true:isChar; setisChar(char.checked)}} />
+          <label for="char" className='label'> Characters</label>
+          <input type="checkbox" className='checkmark' name="char" id="char" defaultChecked onChange={(e) => { setisChar(e.target.checked);number.checked =(e.target.checked===false)?true:isNumber;setIsNumber(number.checked)}} />
         </div>
       </div>
     </>
