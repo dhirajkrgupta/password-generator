@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function App() {
   const [passwordLength, setPasswordLenght] = useState(0)
   const [isNumber, setIsNumber] = useState(true);
   const [isChar, setisChar] = useState(true);
   const [password, setpassword] = useState("");
+  const inputFieldRef = useRef(null);
+  
   function generatePassword() {
     let num = "1234567890";
     let char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -36,21 +38,21 @@ function App() {
     return password;
     }
   }
+
   useEffect(() => {
     setpassword(generatePassword());
    },[isChar,isNumber,passwordLength])
 
   function copyToClipboard() {
-    const copyText = document.getElementById('password')
-    copyText.select();
-    navigator.clipboard.writeText(copyText.value);
+    inputFieldRef.current.select();
+    navigator.clipboard.writeText(inputFieldRef.current.value);
   }
   return (
     <>
       <div className='outerbox'>
         <p>PASSWORD GENERATOR</p>
         <div className='outputbox'>
-          <input type="text" value={password} id='password'/>
+          <input type="text" ref={inputFieldRef} value={password} id='password'/>
           <button className='copyBtn' onClick={copyToClipboard}>Copy</button>
         </div>
         <div className='inputbox'>
